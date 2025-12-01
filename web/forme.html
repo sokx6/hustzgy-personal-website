@@ -8,9 +8,9 @@
     <style>
         .info-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 15px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 25px 0;
         }
 
         @keyframes gradientFlow {
@@ -19,23 +19,64 @@
             100% { background-position: 0% 50%; }
         }
 
+        @keyframes shine {
+            0% { left: -100%; opacity: 0; }
+            20% { left: 100%; opacity: 0.5; }
+            100% { left: 100%; opacity: 0; }
+        }
+
         .info-item {
-            /* 流动渐变背景 */
-            background: linear-gradient(120deg, #f6f8fb 0%, #ffffff 50%, #eef2f5 100%);
+            /* 增强可见度的淡蓝渐变背景 */
+            background: linear-gradient(120deg, #f0f7ff 0%, #e1eeff 50%, #f0f7ff 100%);
             background-size: 200% 200%;
-            animation: gradientFlow 6s ease infinite;
+            animation: gradientFlow 3s ease infinite;
             
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(0,0,0,0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(161, 196, 253, 0.2);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            
+            /* 排版优化 */
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .info-item strong {
+            color: #2a5298;
+            margin-right: 15px;
+            font-weight: 600;
+            min-width: 90px; /* 标签对齐 */
+            position: relative;
+            z-index: 2;
+        }
+        
+        .info-item span, .info-item p {
+            position: relative;
+            z-index: 2;
+            color: #444;
+        }
+
+        /* 增加一道扫光动画，确保肉眼可见 */
+        .info-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            transform: skewX(-20deg);
+            animation: shine 4s infinite;
+            pointer-events: none;
         }
 
         .info-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(42, 82, 152, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(42, 82, 152, 0.15);
             border-color: #a1c4fd;
         }
 
@@ -46,9 +87,10 @@
             left: 0;
             top: 0;
             height: 100%;
-            width: 4px;
+            width: 5px;
             background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
             opacity: 0.8;
+            z-index: 1;
         }
     </style>
 </head>
