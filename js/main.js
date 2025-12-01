@@ -207,8 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             this.y += directionY * 0.5;
                         } else {
                             // Scatter (Repulsion)
-                            this.x -= directionX * 2; 
-                            this.y -= directionY * 2;
+                            this.x -= directionX * 1; 
+                            this.y -= directionY * 1;
                         }
                     }
                 }
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update interaction timer
             if (mouse.x != null) {
                 interactionTimer++;
-                if (interactionTimer > 200) { // Reset after cycle
+                if (interactionTimer > 350) { // Reset after cycle
                     interactionTimer = 0;
                 }
             } else {
