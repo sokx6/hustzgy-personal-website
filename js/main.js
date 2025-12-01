@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize QQ Link
     initQQLink();
 
+    // Initialize Konami Code Easter Egg
+    initKonamiCode();
+
     // Handle Navigation Clicks
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
@@ -443,5 +446,36 @@ document.addEventListener('DOMContentLoaded', () => {
             // PC Protocol: Add Friend Dialog
             qqLink.href = `tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=${uin}`;
         }
+    }
+
+    function initKonamiCode() {
+        const konamiCode = [
+            'ArrowUp', 'ArrowUp', 
+            'ArrowDown', 'ArrowDown', 
+            'ArrowLeft', 'ArrowLeft', 
+            'ArrowRight', 'ArrowRight', 
+            'b', 'a', 'b', 'a'
+        ];
+        let cursor = 0;
+
+        document.addEventListener('keydown', (e) => {
+            // Check if the key matches the current position in the sequence
+            // Use toLowerCase for letters to be case-insensitive if needed, 
+            // but Arrow keys are case sensitive.
+            // Let's handle 'b' and 'a' specifically or just match key directly.
+            
+            const key = e.key;
+            
+            if (key === konamiCode[cursor]) {
+                cursor++;
+                if (cursor === konamiCode.length) {
+                    // Sequence completed
+                    window.location.href = 'https://www.locxl.site';
+                    cursor = 0; // Reset
+                }
+            } else {
+                cursor = 0; // Reset if wrong key
+            }
+        });
     }
 });
