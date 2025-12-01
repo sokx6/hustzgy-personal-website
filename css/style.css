@@ -252,9 +252,9 @@ nav ul li a:hover::after, nav ul li a.active::after {
 }
 
 .welcome-card, .quick-links, .content-card {
-    background: linear-gradient(120deg, #ffffff 0%, #f4f7f9 50%, #ffffff 100%);
+    background: linear-gradient(120deg, #ffffff 0%, #e3f2fd 50%, #ffffff 100%);
     background-size: 200% 200%;
-    animation: cardShimmer 6s ease-in-out infinite;
+    animation: cardShimmer 4s ease-in-out infinite;
     position: relative;
     overflow: hidden;
 }
