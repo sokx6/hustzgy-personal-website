@@ -233,6 +233,12 @@ document.addEventListener('DOMContentLoaded', () => {
             particles = [];
             const particleCount = Math.floor(canvas.width * canvas.height / 12000); // More particles
             for (let i = 0; i < Math.min(particleCount, 200); i++) {
+                particles.push(new Particle());
+            }
+        }
+        createParticles();
+        window.addEventListener('resize', createParticles);
+
         // Animation Loop
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -247,12 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 interactionTimer = 0;
             }
 
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });n animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             particles.forEach(p => {
                 p.update();
                 p.draw();
