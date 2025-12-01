@@ -82,6 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Re-highlight active link
             updateActiveLink();
 
+            // Trigger Prism Syntax Highlighting
+            if (window.Prism) {
+                window.Prism.highlightAll();
+            }
+
         } catch (error) {
             console.error('Error loading page:', error);
             // If SPA load fails, fallback to full reload

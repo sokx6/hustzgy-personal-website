@@ -4,20 +4,9 @@
     <meta charset="UTF-8">
     <title>课程学习 - 校园探索者</title>
     <link rel="stylesheet" href="../css/style.css">
+    <!-- Prism.js for Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <script src="../js/main.js" defer></script>
-    <style>
-        .code-snippet {
-            background: #2d3436;
-            color: #dfe6e9;
-            padding: 15px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            margin: 10px 0;
-            font-size: 14px;
-            line-height: 1.4;
-            overflow-x: auto;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -50,30 +39,31 @@
                 <p><strong>学习内容：</strong>基础语法、数据类型、流程控制、函数、数组、指针、结构体、文件操作</p>
                 <p><strong>学习心得：</strong>通过C语言学习，掌握了编程的基本思维方法。从简单的输入输出到复杂的数据处理，逐步建立起编程能力。最近学习了排序算法，理解了各种排序的工作原理和实现方式。</p>
 
-                <div class="code-snippet">
-                    // 选择排序算法实现<br>
-                    void selectionSort(int arr[], int n) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;int i, j, minIndex, temp;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;for (i = 0; i < n-1; i++) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minIndex = i;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (j = i+1; j < n; j++) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (arr[j] < arr[minIndex]) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minIndex = j;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp = arr[i];<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[i] = arr[minIndex];<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[minIndex] = temp;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                    }<br><br>
-                    // 测试代码<br>
-                    int main() {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;int numbers[] = {64, 25, 12, 22, 11};<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;int n = sizeof(numbers)/sizeof(numbers[0]);<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;selectionSort(numbers, n);<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
-                    }
-                </div>
+                <pre><code class="language-c">
+// 选择排序算法实现
+void selectionSort(int arr[], int n) {
+    int i, j, minIndex, temp;
+    for (i = 0; i < n-1; i++) {
+        minIndex = i;
+        for (j = i+1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}
+
+// 测试代码
+int main() {
+    int numbers[] = {64, 25, 12, 22, 11};
+    int n = sizeof(numbers)/sizeof(numbers[0]);
+    selectionSort(numbers, n);
+    return 0;
+}
+                </code></pre>
             </div>
 
             <!-- 微积分 -->
@@ -105,12 +95,15 @@
                 </div>
             </div>
         </div>
-
         <footer>
             <p>© 2025 校园探索者 · 记录成长的点滴</p>
             <p>联系方式:2331952260@qq.com</p>
         </footer>
     </div>
+    <!-- Prism.js Core and C Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
 </body>
+</html>
 </html>
 ```

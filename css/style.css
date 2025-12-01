@@ -290,8 +290,19 @@ nav ul li a:hover::after, nav ul li a.active::after {
     font-weight: 500;
 }
 
-/* Footer */
-footer {
+/* Code Highlighting Overrides */
+pre[class*="language-"] {
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+code[class*="language-"], pre[class*="language-"] {
+    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    text-shadow: none !important;
+}
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px);
     color: #666;
