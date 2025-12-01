@@ -136,4 +136,99 @@ document.addEventListener('DOMContentLoaded', () => {
     updateActiveLink();
     // Initial header state
     updateHeaderState(window.location.href);
+    
+    // Initialize Particles
+    initParticles();
+
+    function initParticles() {
+        const header = document.querySelector('header');
+        if (!header) return;
+
+        const canvas = document.createElement('canvas');
+        canvas.id = 'particles-canvas';
+        header.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        // Resize Canvas
+        function resize() {
+            canvas.width = header.offsetWidth;
+            canvas.height = header.offsetHeight;
+        }
+        window.addEventListener('resize', resize);
+        // Initial resize
+        resize();
+
+        // Particle Class
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Init Particles
+        function createParticles() {
+            particles = [];
+            const particleCount = Math.floor(canvas.width * canvas.height / 10000); // Density based on area
+            for (let i = 0; i < Math.min(particleCount, 100); i++) {
+                particles.push(new Particle());
+            }
+        }
+        createParticles();
+        window.addEventListener('resize', createParticles);
+
+        // Animation Loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < 100) {
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * (1 - dist/100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
 });
