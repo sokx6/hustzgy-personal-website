@@ -13,18 +13,42 @@
             margin: 15px 0;
         }
 
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .info-item {
-            background: #f8f9fa;
+            /* 流动渐变背景 */
+            background: linear-gradient(120deg, #f6f8fb 0%, #ffffff 50%, #eef2f5 100%);
+            background-size: 200% 200%;
+            animation: gradientFlow 6s ease infinite;
+            
             padding: 15px;
             border-radius: 8px;
-            border: 1px solid #eee;
+            border: 1px solid rgba(0,0,0,0.05);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .info-item:hover {
-            background: #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(42, 82, 152, 0.15);
+            border-color: #a1c4fd;
+        }
+
+        /* 左侧装饰条 */
+        .info-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
+            opacity: 0.8;
         }
     </style>
 </head>
