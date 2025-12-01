@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize Mobile Menu
     initMobileMenu();
+    
+    // Initialize Theme Toggle
+    initThemeToggle();
 
     // Handle Navigation Clicks
     document.addEventListener('click', (e) => {
@@ -87,6 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Re-initialize Mobile Menu
             initMobileMenu();
+            
+            // Re-initialize Theme Toggle
+            initThemeToggle();
 
             // Trigger Prism Syntax Highlighting
             if (window.Prism) {
@@ -251,8 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             draw() {
-                // Use theme blue color for particles on light background
-                ctx.fillStyle = '#1e3c72'; 
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                ctx.fillStyle = isDark ? 'rgba(161, 196, 253, 0.8)' : '#1e3c72';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -291,6 +297,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Draw connections
             particles.forEach((p1, i) => {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                const rgb = isDark ? '161, 196, 253' : '30, 60, 114';
+
                 // Connect to other particles
                 particles.slice(i + 1).forEach(p2 => {
                     const dx = p1.x - p2.x;
@@ -299,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Shorter connections (80px)
                     if (dist < 80) {
-                        ctx.strokeStyle = `rgba(30, 60, 114, ${0.2 * (1 - dist/80)})`;
+                        ctx.strokeStyle = `rgba(${rgb}, ${0.2 * (1 - dist/80)})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
@@ -315,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < mouse.radius) {
                         // Stronger connection to mouse
-                        ctx.strokeStyle = `rgba(30, 60, 114, ${0.4 * (1 - dist/mouse.radius)})`;
+                        ctx.strokeStyle = `rgba(${rgb}, ${0.4 * (1 - dist/mouse.radius)})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
@@ -351,5 +360,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         nav.insertBefore(button, nav.firstChild);
+    }
+
+    function initThemeToggle() {
+        const nav = document.querySelector('nav');
+        if (!nav) return;
+
+        // Check if button already exists
+        if (nav.querySelector('.theme-toggle')) return;
+
+        const button = document.createElement('button');
+        button.className = 'theme-toggle';
+        button.setAttribute('aria-label', 'Toggle theme');
+        button.style.cssText = `
+            background: transparent;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-left: 10px;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 102;
+        `;
+        
+        // Function to set theme
+        const setTheme = (theme) => {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                button.innerHTML = '☀️';
+                button.style.color = '#ffd700'; // Sun color
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                button.innerHTML = '🌙';
+                button.style.color = '#1e3c72'; // Moon color
+            }
+        };
+
+        // Load saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else {
+            setTheme(systemDark ? 'dark' : 'light');
+        }
+
+        button.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        
+        // Listen for system changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // Insert button
+        // For mobile, we want it visible. 
+        // If we append to nav, it will be after the UL (which is hidden on mobile) and before/after hamburger?
+        // Nav structure: [Hamburger] [UL] [ThemeToggle]
+        nav.appendChild(button);
     }
 });
