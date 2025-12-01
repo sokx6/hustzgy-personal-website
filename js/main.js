@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Mouse interaction
         let mouse = { x: null, y: null, radius: 200 };
+        let interactionTimer = 0;
 
         window.addEventListener('mousemove', (event) => {
             mouse.x = event.x;
@@ -188,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.y += this.vy;
 
                 // Mouse interaction (Repulsion/Attraction)
-                if (mouse.x) {
+                if (mouse.x != null) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx*dx + dy*dy);
@@ -200,9 +201,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     let directionY = forceDirectionY * force * this.density;
 
                     if (distance < mouse.radius) {
-                        // Attraction
-                        this.x += directionX * 0.5; 
-                        this.y += directionY * 0.5;
+                        if (interactionTimer < 150) {
+                            // Attraction
+                            this.x += directionX * 0.5; 
+                            this.y += directionY * 0.5;
+                        } else {
+                            // Scatter (Repulsion)
+                            this.x -= directionX * 2; 
+                            this.y -= directionY * 2;
+                        }
                     }
                 }
 
@@ -226,14 +233,24 @@ document.addEventListener('DOMContentLoaded', () => {
             particles = [];
             const particleCount = Math.floor(canvas.width * canvas.height / 12000); // More particles
             for (let i = 0; i < Math.min(particleCount, 200); i++) {
-                particles.push(new Particle());
-            }
-        }
-        createParticles();
-        window.addEventListener('resize', createParticles);
-
         // Animation Loop
         function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Update interaction timer
+            if (mouse.x != null) {
+                interactionTimer++;
+                if (interactionTimer > 200) { // Reset after cycle
+                    interactionTimer = 0;
+                }
+            } else {
+                interactionTimer = 0;
+            }
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });n animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             particles.forEach(p => {
