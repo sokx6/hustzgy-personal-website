@@ -3,107 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>校园足迹 - 校园探索者</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Microsoft YaHei", sans-serif;
-            background: #f5f6fa;
-            color: #2d3436;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .page-header {
-            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .nav {
-            background: #2d3436;
-            padding: 15px;
-            text-align: center;
-        }
-
-            .nav a {
-                color: white;
-                text-decoration: none;
-                margin: 0 15px;
-                padding: 8px 16px;
-                border-radius: 5px;
-                transition: background 0.3s;
-            }
-
-                .nav a:hover {
-                    background: #00b894;
-                }
-
-        .content {
-            padding: 30px;
-        }
-
-        .location-card {
-            background: #dfe6e9;
-            margin: 20px 0;
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid #fd79a8;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <div class="page-header">
-            <h1>📷 校园足迹</h1>
-            <p>记录在校园的点点滴滴</p>
+        <header>
+            <div class="campus-badge">
+                <img src="../image/logo.png" alt="学校校徽" width="120" height="120">
+            </div>
+            <h1>校园探索者</h1>
+            <p>我的大学成长日记 · 记录每一份精彩</p>
+        </header>
+
+        <div class="nav-container">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="study.html">课程学习</a></li>
+                    <li><a href="club.html">社团活动</a></li>
+                    <li><a href="campus.html" class="active">校园足迹</a></li>
+                    <li><a href="forme.html">🎨关于作者</a></li>
+                </ul>
+            </nav>
         </div>
 
-        <div class="nav">
-            <a href="../index.html">返回主页</a>
-            <a href="study.html">课程学习</a>
-            <a href="club.html">社团活动</a>
-            <a href="forme.html">关于我</a>
-        </div>
+        <div class="main-content">
+            <h2 class="page-title">📷 校园足迹</h2>
 
-        <div class="content">
-            <div class="location-card">
-                <h2>🏫 教学楼</h2>
+            <div class="content-card">
+                <h3>🏫 教学楼</h3>
                 <p>每天上课和学习的主要场所，在这里度过了大部分的学习时光。</p>
-                <img src="../image/class.jpg" alt="教学楼" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin:15px 0; border:3px solid white; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+                <img src="../image/class.jpg" alt="教学楼" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin:15px 0; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
             </div>
 
-            <div class="location-card">
-                <h2>📚 图书馆</h2>
+            <div class="content-card">
+                <h3>📚 图书馆</h3>
                 <p>安静的学习环境，丰富的图书资源，是自习和查阅资料的好地方。</p>
-                <img src="../image/library.jpg" alt="图书馆" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin:15px 0; border:3px solid white; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+                <img src="../image/library.jpg" alt="图书馆" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin:15px 0; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
             </div>
 
-            <div class="location-card">
-                <h2>🏸 乒乓球馆</h2>
+            <div class="content-card">
+                <h3>🏸 乒乓球馆</h3>
                 <p>参加乒乓球社活动，锻炼身体，放松心情的场所。</p>
-                <img src="../image/sport.jpg" alt="运动场" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin:15px 0; border:3px solid white; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+                <img src="../image/sport.jpg" alt="运动场" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin:15px 0; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
             </div>
 
-            <div class="location-card">
-                <h2>🍽️ 食堂</h2>
+            <div class="content-card">
+                <h3>🍽️ 食堂</h3>
                 <p>日常用餐的地方，与同学们交流的场所。</p>
-                <img src="../image/food.jpg" alt="食堂" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin:15px 0; border:3px solid white; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+                <img src="../image/food.jpg" alt="食堂" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin:15px 0; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
             </div>
         </div>
+
+        <footer>
+            <p>© 2025 校园探索者 · 记录成长的点滴</p>
+            <p>联系方式:2331952260@qq.com</p>
+        </footer>
     </div>
 </body>
 </html>
