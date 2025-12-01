@@ -648,3 +648,102 @@ footer p:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    /* Container & Layout */
+    .container {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    /* Header */
+    header {
+        padding: 40px 20px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    .campus-badge {
+        width: 80px;
+        height: 80px;
+        font-size: 30px;
+    }
+
+    .campus-badge img {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* Navigation */
+    .nav-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        position: sticky;
+        top: 0;
+    }
+
+    nav ul {
+        padding: 10px;
+        justify-content: flex-start;
+        min-width: max-content; /* Ensure horizontal scrolling works */
+    }
+
+    nav ul li a {
+        padding: 10px 15px;
+        font-size: 0.95em;
+        white-space: nowrap;
+    }
+
+    /* Grids */
+    .home-grid, .info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+    }
+
+    /* Cards */
+    .welcome-card, .quick-links, .content-card {
+        padding: 20px;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-item strong {
+        margin-bottom: 5px;
+    }
+
+    /* Typography */
+    .page-title {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 20px 15px;
+        font-size: 0.85em;
+    }
+}
