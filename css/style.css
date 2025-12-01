@@ -251,10 +251,15 @@ nav ul li a:hover::after, nav ul li a.active::after {
     100% { background-position: 0% 50%; }
 }
 
-.welcome-card, .quick-links, .content-card {
+.container {
     background: linear-gradient(120deg, #ffffff 0%, #e3f2fd 50%, #ffffff 100%);
     background-size: 200% 200%;
     animation: cardShimmer 4s ease-in-out infinite;
+}
+
+.welcome-card, .quick-links, .content-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
 }
