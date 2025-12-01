@@ -267,28 +267,139 @@ nav ul li a:hover::after, nav ul li a.active::after {
     overflow: hidden;
 }
 
-.quick-links li {
-    margin: 15px 0;
+/* Welcome Card Styling */
+.welcome-card {
+    padding: 40px;
+    border-radius: 16px;
+}
+
+.welcome-header h2 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-    cursor: pointer;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
-.quick-links li:hover {
-    transform: translateX(5px) translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-left: 3px solid #2a5298;
+.feature-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-.quick-links a {
-    color: #444;
-    text-decoration: none;
+.feature-item .icon {
+    font-size: 2em;
+    margin-right: 15px;
+}
+
+.feature-item .text strong {
     display: block;
-    font-weight: 500;
+    color: #2a5298;
+    font-size: 1.1em;
+    margin-bottom: 4px;
+}
+
+.feature-item .text p {
+    font-size: 0.9em;
+    color: #777;
+    margin: 0;
+}
+
+.quote {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #2a5298;
+    padding-left: 15px;
+    margin-top: 20px;
+    background: rgba(42, 82, 152, 0.05);
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Quick Links Styling */
+.quick-links {
+    padding: 30px;
+    border-radius: 16px;
+}
+
+.quick-links h3 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    border-bottom: 2px solid rgba(42, 82, 152, 0.1);
+    padding-bottom: 10px;
+}
+
+.links-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.link-card {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #444;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.link-card:hover {
+    transform: translateX(5px);
+    background: white;
+    box-shadow: 0 5px 15px rgba(42, 82, 152, 0.1);
+    border-color: #a1c4fd;
+}
+
+.link-icon {
+    font-size: 1.5em;
+    margin-right: 15px;
+}
+
+.link-text {
+    font-weight: 600;
+    flex-grow: 1;
+    font-size: 1.05em;
+}
+
+.arrow {
+    color: #2a5298;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.link-card:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* Code Highlighting Overrides */
